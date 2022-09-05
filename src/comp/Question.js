@@ -1,20 +1,10 @@
 import React from "react"
-import { nanoid } from 'nanoid'
+import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js'
 
 export default function Question(props){
 
 const displayPropetry= props.questionView ? "screen_visible" : "screen_invisible" 
 
-  function handleClickStartQuiz(e){
-      
-      
-    }
-
-  console.log(`You are in Console of Question  ${props.questionData[0].question}`)
-  const styles = {
-    backgroundColor: "red"
-  }
-  
   const questionArray= props.questionData
  
   const qlist= questionArray.map((item,index)=>
@@ -46,22 +36,23 @@ const displayPropetry= props.questionView ? "screen_visible" : "screen_invisible
               }
 
               const newArray=shuffleArray(arr)
-
+              console.log(newArray)
               
             // create dynamic div for html
               const options= newArray.map(item=>{
+                var id= nanoid()
                 return(
-                <div key={nanoid()}>{item}</div>
+                <div id={id} onClick={(e)=>{onstoreAnswer(e,id)}} key={id}>{item}</div>
                 )
 
               })
 
 
-
+              var qid=nanoid()
                   // below here returning question and option  for qlist
                 return(
                   <div className="grid-container">
-                    <div className="item1" key={nanoid()}>{q1}</div>
+                    <div id={qid} className="item1" key={qid}>{q1}</div>
                     {options}
                     
                   </div>
@@ -69,12 +60,29 @@ const displayPropetry= props.questionView ? "screen_visible" : "screen_invisible
                 )
               }
               )
+
+// store question id and user's answer              
+const [answer,setAnswer] = React.useState({
+  qid:"",
+  ans:""
+})
+
+function onstoreAnswer(e,id){
   
+    
+    console.log(id)
+    
+
+
+
   
+}
 
 
-function handleCheckAnswer(){
 
+function handleCheckAnswer(e){
+
+  console.log(`here is id ${e}`)
 
   
 }              
