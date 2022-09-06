@@ -3,6 +3,8 @@ import React from "react"
 import './App.css';
 import Question from './comp/Question.js'
 import Modal from './comp/Modal';
+import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js'
+
 
 
 function App() {
@@ -32,9 +34,9 @@ function App() {
 console.log(questionData)
 
   return (
-    <div className="App">
-    {questionData!==undefined && <Question questionData ={questionData} questionView={questionView} />}  
-{modalView!==false && <Modal handleClickStartQuiz={handleClickStartQuiz} modalView={modalView} />
+    <div key={nanoid()} className="App">
+    {questionData!==undefined && <Question key={nanoid()} questionData ={questionData} questionView={questionView} />}  
+{modalView!==false && <Modal key={nanoid()}  handleClickStartQuiz={handleClickStartQuiz} modalView={modalView} />
 }    
 </div>
   );
